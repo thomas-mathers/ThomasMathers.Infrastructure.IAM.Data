@@ -21,18 +21,13 @@ pool:
 
 steps:
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
-  inputs:
-    command: 'build'
-    arguments: '--configuration $(buildConfiguration)'
-    projects: '$(projectName)/$(projectName).csproj'
-- task: DotNetCoreCLI@2
   displayName: 'dotnet test'
   inputs:
     command: 'test'
     arguments: '--configuration $(buildConfiguration)'
     projects: '$(testProjectName)/$(testProjectName).csproj'
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
