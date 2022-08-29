@@ -2,8 +2,6 @@ variables:
   majorVersion: '1'
   minorVersion: '0'
   buildConfiguration: 'Release'
-  projectName: 'ThomasMathers.Infrastructure.IAM.Data'
-  testProjectName: 'ThomasMathers.Infrastructure.IAM.Data.Tests'
 
 name: '$(majorVersion).$(minorVersion).$(Rev:r)'
 
@@ -11,21 +9,11 @@ trigger:
   branches:
     include:
       - master
-  paths:
-    include:
-      - $(projectName)
-      - $(testProjectName)
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
-  inputs:
-    command: 'test'
-    arguments: '--configuration $(buildConfiguration)'
-    projects: '$(testProjectName)/$(testProjectName).csproj'
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
   inputs:
