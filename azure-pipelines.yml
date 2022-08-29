@@ -32,11 +32,10 @@ steps:
     command: 'test'
     arguments: '--configuration $(buildConfiguration)'
     projects: '$(testProjectName)/$(testProjectName).csproj'
-- task: NuGetCommand@2
-  displayName: 'NuGet pack'
+- task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
-    packagesToPack: '$(projectName)/$(projectName).csproj'
+    packagesToPack: '**/*.csproj'
     versioningScheme: 'byBuildNumber'
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifact'
